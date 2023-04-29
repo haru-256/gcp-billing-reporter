@@ -5,14 +5,15 @@ resource "tfe_project" "project" {
 }
 
 resource "tfe_workspace" "workspace" {
-  name         = var.tfc_workspace_name
-  organization = var.tfc_organization_name
-  project_id   = tfe_project.project.id
-  # speculative_enabled = true
+  name                = var.tfc_workspace_name
+  organization        = var.tfc_organization_name
+  project_id          = tfe_project.project.id
+  speculative_enabled = true
   # auto_apply          = false
+  # working_directory   = "terraform/"
   # vcs_repo {
-  #   github_app_installation_id = var.vcs_repo_ghain
-  #   identifier                 = var.vcs_repo_identifier
+  #   github_app_installation_id = var.tfc_vcs_repo_ghain
+  #   identifier                 = var.tfc_vcs_repo_identifier
   #   ingress_submodules         = false
   #   branch                     = "main"
   # }
