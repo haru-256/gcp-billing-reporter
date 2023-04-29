@@ -1,6 +1,3 @@
-# Copyright (c) HashiCorp, Inc.
-# SPDX-License-Identifier: MPL-2.0
-
 variable "tfc_organization_name" {
   type        = string
   description = "The name of your Terraform Cloud organization"
