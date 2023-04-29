@@ -16,15 +16,15 @@ variable "tfc_workspace_name" {
   description = "The name of the workspace that you'd like to create and connect to GCP"
 }
 
-# variable "tfc_vcs_repo_ghain" {
-#   type        = string
-#   description = "github app installation id"
-# }
+variable "tfc_vcs_repo_ghain" {
+  type        = string
+  description = "github app installation id"
+}
 
-# variable "tfc_vcs_repo_identifier" {
-#   type        = string
-#   description = "vcs identifier"
-# }
+variable "tfc_vcs_repo_identifier" {
+  type        = string
+  description = "vcs identifier"
+}
 
 variable "gcp_project_id" {
   type        = string
