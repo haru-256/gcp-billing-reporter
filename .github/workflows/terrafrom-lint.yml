@@ -20,8 +20,10 @@ jobs:
         if: steps.cache-plugin.outputs.cache-hit != 'true'
         with:
           tflint_version: v0.46.1
-        working-directory: src
       - name: Lint with tflint
+        working-directory: terraform
         run: tflint . --recursive
       - name: Lint with tfsec
         uses: aquasecurity/tfsec-action@v1.0.0
+        with:
+          working_directory: terraform

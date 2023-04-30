@@ -68,7 +68,7 @@ resource "google_secret_manager_secret" "slack_webhook_url" {
   }
 }
 resource "google_secret_manager_secret_version" "slack_webhook_url" {
-  secret = google_secret_manager_secret.slack-webhook-url.id
+  secret = google_secret_manager_secret.slack_webhook_url.id
 
   secret_data = var.slack_webhook_url
 }
@@ -76,12 +76,12 @@ resource "google_secret_manager_secret_version" "slack_webhook_url" {
 # billing reporter service account
 resource "google_service_account" "billing_reporter" {
   project      = var.gcp_project_id
-  account_id   = "billing_reporter"
+  account_id   = "billing-reporter"
   display_name = "Billing Reporter Service Account"
   description  = "Billing Report Service Account."
 }
-resource "google_project_iam_member" "billing-report" {
-  project = var.project_id
+resource "google_project_iam_member" "billing_report" {
+  project = var.gcp_project_id
   for_each = toset([
     "roles/bigquery.dataViewer",
     "roles/bigquery.jobUser",
