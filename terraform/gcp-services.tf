@@ -6,7 +6,9 @@ locals {
     "cloudresourcemanager.googleapis.com",
     "sts.googleapis.com",
     "iamcredentials.googleapis.com",
-    "cloudresourcemanager.googleapis.com"
+    "cloudresourcemanager.googleapis.com",
+    "secretmanager.googleapis.com",
+    "pubsub.googleapis.com"
   ]
 }
 

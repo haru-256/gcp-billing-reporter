@@ -1,5 +1,8 @@
 name: Python Lint
 on:
+  push:
+    branches:
+      - "main"
   pull_request:
     paths:
       - "src/**"
