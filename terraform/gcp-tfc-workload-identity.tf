@@ -47,7 +47,11 @@ resource "google_service_account_iam_member" "tfc_service_account_member" {
 resource "google_project_iam_member" "tfc_project_member" {
   project = var.gcp_project_id
   # TODO: change to minimum role
-  role   = "roles/editor"
+  for_each = toset([
+    "roles/editor",
+    "resourcemanager.projects.setIamPolicy"
+  ])
+  role   = each.key
   member = "serviceAccount:${google_service_account.tfc_service_account.email}"
 }
 
