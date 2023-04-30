@@ -34,8 +34,9 @@ resource "google_pubsub_topic" "billing_reporter" {
 
 # to store cloud function logs
 resource "google_storage_bucket" "billing_reporter_cloud_function_logs" {
-  name     = "${var.gcp_project_id}-billing-reporter-cloud-function-logs"
-  location = var.gcp_default_region
+  name                        = "${var.gcp_project_id}-billing-reporter-cloud-function-logs"
+  location                    = var.gcp_default_region
+  uniform_bucket_level_access = true
 }
 
 # run scheduler job of billing report
