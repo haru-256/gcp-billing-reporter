@@ -1,12 +1,12 @@
-import os
 import pathlib
 from datetime import datetime
 from typing import Any
 
+import google_crc32c
 import pandas as pd
 from dateutil import tz
 from dateutil.relativedelta import relativedelta
-from google.cloud import bigquery
+from google.cloud import bigquery, secretmanager
 from slack_sdk.webhook import WebhookClient
 from slack_sdk.webhook.webhook_response import WebhookResponse
 
@@ -29,6 +29,33 @@ def calc_gcp_cost(start_date_jst: str, end_date_jst: str) -> tuple[pd.DataFrame,
     df: pd.DataFrame = query_job.result().to_dataframe()
     processed_gib_bytes = query_job.total_bytes_processed / 1073741824
     return df, processed_gib_bytes
+
+
+def fetch_secret_version(project_id: str, secret_id: str, version_id: str) -> str:
+    """
+    Access the payload for the given secret version if one exists. The version
+    can be a version number as a string (e.g. "5") or an alias (e.g. "latest").
+    Args:
+        project_id (str): project
+        secret_id (str): secret_id
+        version_id (str): a version number as a string (e.g. "5") or
+            an alias (e.g. "latest").
+    Returns:
+        str: secret value
+    """
+    client = secretmanager.SecretManagerServiceClient()
+    name = f"projects/{project_id}/secrets/{secret_id}/versions/{version_id}"
+    response = client.access_secret_version(request={"name": name})
+
+    # Verify payload checksum.
+    crc32c = google_crc32c.Checksum()
+    crc32c.update(response.payload.data)
+    if response.payload.data_crc32c != int(crc32c.hexdigest(), 16):
+        raise ValueError("Data corruption detected.")
+
+    payload = response.payload.data.decode("UTF-8")
+
+    return payload
 
 
 def build_message(
@@ -81,13 +108,14 @@ def build_message(
     return blocks
 
 
-def report_gcp_cost_to_slack(slack_webhook_url: str) -> WebhookResponse:
+def report_gcp_cost_to_slack() -> WebhookResponse:
     """Reporting GCP cost to the Slack channel
-    Args:
-        slack_webhook_url (str): webhook url
     Returns:
         WebhookResponse: the response from the slack webhook
     """
+    slack_webhook_url = fetch_secret_version(
+        "haru256-billing-reporter", "SLACK_WEBHOOK_URL", "latest"
+    )
     webhook = WebhookClient(slack_webhook_url)
 
     end_datetime_jst = datetime.now(tz=tz.gettz("Asia/Tokyo"))
@@ -101,6 +129,9 @@ def report_gcp_cost_to_slack(slack_webhook_url: str) -> WebhookResponse:
         text="Billing Report",
         blocks=blocks,
     )
+    assert response.status_code == 200
+    assert response.body == "ok"
+
     return response
 
 
@@ -115,12 +146,7 @@ def main(
     Returns:
         WebhookResponse: the response from the slack webhook
     """
-    slack_webhook_url = os.getenv("SLACK_WEBHOOK_URL")
-    assert (
-        slack_webhook_url is not None
-    ), "environmental variable: 'SLACK_WEBHOOK_URL' must be not None."
-
-    return report_gcp_cost_to_slack(slack_webhook_url)
+    return report_gcp_cost_to_slack()
 
 
 if __name__ == "__main__":
