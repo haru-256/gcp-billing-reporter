@@ -1,4 +1,4 @@
-# declare resource for connectiong terraform cloud and gcp
+# declare resource for connectiong between Terraform Cloud and GCP
 
 data "google_project" "project" {
   project_id = var.gcp_project_id

@@ -20,6 +20,10 @@ terraform {
       source  = "hashicorp/google-beta"
       version = "~>4.63.1"
     }
+    github = {
+      source  = "integrations/github"
+      version = "~>5.23.0"
+    }
   }
 }
 
@@ -36,3 +40,5 @@ provider "google-beta" {
   project = var.gcp_project_id
   region  = var.gcp_default_region
 }
+
+provider "github" {}

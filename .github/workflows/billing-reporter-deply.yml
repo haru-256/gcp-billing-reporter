@@ -1,0 +1,34 @@
+name: Python Lint
+on:
+  pull_request:
+    paths:
+      - "src/**"
+jobs:
+  billing-reporter-deply:
+    permissions:
+      id-token: "write"
+      contents: "read"
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      - id: "auth"
+        name: "Authenticate to Google Cloud"
+        uses: "google-github-actions/auth@v0.4.0"
+        with:
+          workload_identity_provider: ""
+          service_account: ""
+      - id: "deploy"
+        uses: "google-github-actions/deploy-cloud-functions@v1"
+        with:
+          name: "billing-reporter"
+          project_id: ${{ vars.GCP_PROJECT_ID }}
+          region: "us-central1"
+          runtime: "python311"
+          entry_point: "main"
+          source_dir: "src"
+          description: "Report GCP cost to the slack channel"
+          service_account_email: ""
+          memory_mb: "256"
+          event_trigger_type: "providers/cloud.pubsub/eventTypes/topic.publish."
+          event_trigger_resource: ""
