@@ -32,3 +32,8 @@ variable "gcp_default_region" {
   type        = string
   description = "The name for your GCP default region"
 }
+
+variable "slack_webhook_url" {
+  type        = string
+  description = "The url for slack webhook"
+}

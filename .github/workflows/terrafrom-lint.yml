@@ -1,0 +1,35 @@
+name: Terraform Lint
+on:
+  pull_request:
+    paths:
+      - "terraform/**"
+jobs:
+  terraform-lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      - name: Cache plugin dir
+        id: cache-tflint-plugin
+        uses: actions/cache@v3
+        with:
+          path: ~/.tflint.d/plugins
+          key: tflint-${{ hashFiles('terraform/.tflint.hcl') }}
+      - name: Setup TFLint
+        uses: terraform-linters/setup-tflint@v3
+        with:
+          tflint_version: v0.46.1
+      - name: Init TFLint
+        if: steps.cache-tflint-plugin.outputs.cache-hit != 'true'
+        working-directory: terraform
+        run: tflint --init
+        env:
+          # https://github.com/terraform-linters/tflint/blob/master/docs/user-guide/plugins.md#avoiding-rate-limiting
+          GITHUB_TOKEN: ${{ github.token }}
+      - name: Lint with tflint
+        working-directory: terraform
+        run: tflint --recursive
+      - name: Lint with tfsec
+        uses: aquasecurity/tfsec-action@v1.0.0
+        with:
+          working_directory: terraform

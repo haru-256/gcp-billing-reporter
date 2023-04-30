@@ -1,0 +1,27 @@
+name: Python Lint
+on:
+  pull_request:
+    paths:
+      - "src/**"
+jobs:
+  python-lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.11"
+          cache: "pipenv"
+      - name: Install pipenv
+        run: curl https://raw.githubusercontent.com/pypa/pipenv/master/get-pipenv.py | python
+      - name: Install dependencies
+        working-directory: src
+        run: pipenv sync --dev
+      - name: Lint with flake8
+        working-directory: src
+        run: pipenv run flake8 .
+      - name: Lint with mypy
+        working-directory: src
+        run: pipenv run mypy .

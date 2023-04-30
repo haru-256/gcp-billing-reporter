@@ -1,0 +1,16 @@
+[tool.black]
+line-length = 100
+target-version = ["py311"]
+
+[tool.isort]
+profile = "black"
+atomic = "true"
+py_version=311
+
+[tool.mypy]
+python_version = "3.11"
+exclude = [".venv"]
+
+[[tool.mypy.overrides]]
+module = "google_crc32c"
+ignore_missing_imports = true

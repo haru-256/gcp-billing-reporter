@@ -1,0 +1,26 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+slack-sdk = "~=3.21.3"
+python-dateutil = "~=2.8.2"
+google-cloud-bigquery = "~=3.10.0"
+google-cloud-secret-manager = "~=2.16.1"
+google-crc32c = "~=1.5.0"
+pandas = "~=2.0.1"
+db-dtypes = "~=1.1.1"
+
+[dev-packages]
+flake8 = "*"
+pytest = "*"
+isort = "*"
+black = "*"
+mypy = "*"
+ipython = "*"
+types-python-dateutil = "~=2.8.19.12"
+pandas-stubs = "~=2.0.0.230412"
+
+[requires]
+python_version = "3.11"
