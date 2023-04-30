@@ -17,9 +17,14 @@ jobs:
           key: tflint-${{ hashFiles('terraform/.tflint.hcl') }}
       - name: Setup Terraform Lint
         uses: terraform-linters/setup-tflint@v3
-        if: steps.cache-plugin.outputs.cache-hit != 'true'
         with:
           tflint_version: v0.46.1
+      - name: Init TFLint
+        if: steps.cache-plugin.outputs.cache-hit != 'true'
+        run: tflint --init
+        env:
+          # https://github.com/terraform-linters/tflint/blob/master/docs/user-guide/plugins.md#avoiding-rate-limiting
+          GITHUB_TOKEN: ${{ github.token }}
       - name: Lint with tflint
         working-directory: terraform
         run: tflint --recursive

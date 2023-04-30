@@ -15,5 +15,5 @@ output "billing_reporter_sa_email" {
 
 output "billing_reporter_pubsub_topic" {
   description = "The name of GCP PubSub Topic for Billing Reporter"
-  value       = google_service_account.billing_reporter.email
+  value       = google_pubsub_topic.billing_reporter.id
 }
