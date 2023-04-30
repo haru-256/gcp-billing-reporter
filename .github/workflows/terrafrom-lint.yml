@@ -20,7 +20,7 @@ jobs:
         with:
           tflint_version: v0.46.1
       - name: Init TFLint
-        if: steps.cache-plugin.outputs.cache-hit != 'true'
+        # if: steps.cache-plugin.outputs.cache-hit != 'true'
         run: tflint --init
         env:
           # https://github.com/terraform-linters/tflint/blob/master/docs/user-guide/plugins.md#avoiding-rate-limiting
