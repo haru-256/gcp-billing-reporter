@@ -1,0 +1,36 @@
+name: Python Lint
+on:
+  pull_request:
+    paths:
+      - "src/**"
+jobs:
+  python-lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.11"
+      - name: Install pipenv
+        run: |
+          python -m pip install --upgrade pipenv wheel
+      - id: cache-pipenv
+        uses: actions/cache@v1
+        with:
+          path: ~/src/.venv
+          key: ${{ runner.os }}-pipenv-${{ hashFiles('**/Pipfile.lock') }}
+      - name: Install dependencies
+        if: steps.cache-pipenv.outputs.cache-hit != 'true'
+        working-directory: src
+        run: |
+          pipenv sync --dev
+      - name: Lint with flake8
+        working-directory: src
+        run: |
+          pipenv run flake8 .
+      - name: Lint with mypy
+        working-directory: src
+        run: |
+          pipenv run mypy .
