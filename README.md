@@ -8,7 +8,7 @@ title: Billing Reporter
 ---
 flowchart LR
     subgraph Google Cloud
-    scheduler["Cloud Scheduler\n run at 7:00 everyday"] --> pubsub[Cloud PubSub]
+    scheduler["Cloud Scheduler\n run everyday at 7:00"] --> pubsub[Cloud PubSub]
     pubsub --> function[Cloud Function]
     function <-->|fetch cost data| bigquery[BigQuery]
     end
