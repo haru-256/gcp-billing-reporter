@@ -85,6 +85,7 @@ resource "google_project_iam_member" "billing_report" {
   project = var.gcp_project_id
   for_each = toset([
     "roles/bigquery.dataViewer",
+    "roles/bigquery.dataEditor",
     "roles/bigquery.jobUser",
     "roles/bigquery.readSessionUser",
     "roles/cloudbuild.builds.builder",
