@@ -1,12 +1,12 @@
 terraform {
   required_version = "~>1.4.6"
-  cloud {
-    organization = "haru256"
-    hostname     = "app.terraform.io"
-    workspaces {
-      name = "haru256-billing-report"
-    }
-  }
+  # cloud {
+  #   organization = "haru256"
+  #   hostname     = "app.terraform.io"
+  #   workspaces {
+  #     name = "haru256-billing-report"
+  #   }
+  # }
   required_providers {
     tfe = {
       source  = "hashicorp/tfe"

@@ -19,7 +19,7 @@ module "gh_oidc" {
   source      = "terraform-google-modules/github-actions-runners/google//modules/gh-oidc"
   project_id  = var.gcp_project_id
   pool_id     = "github-action"
-  provider_id = "githu-action"
+  provider_id = "github-action"
   sa_mapping = {
     (google_service_account.gh.account_id) = {
       sa_name   = google_service_account.gh.name

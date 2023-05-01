@@ -114,7 +114,7 @@ def report_gcp_cost_to_slack() -> WebhookResponse:
         WebhookResponse: the response from the slack webhook
     """
     slack_webhook_url = fetch_secret_version(
-        "haru256-billing-reporter", "SLACK_WEBHOOK_URL", "latest"
+        "haru256-billing-report", "SLACK_WEBHOOK_URL", "latest"
     )
     webhook = WebhookClient(slack_webhook_url)
 

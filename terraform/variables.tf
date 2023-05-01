@@ -37,3 +37,8 @@ variable "slack_webhook_url" {
   type        = string
   description = "The url for slack webhook"
 }
+
+variable "owner_member_email" {
+  type        = string
+  description = "The owner member email"
+}

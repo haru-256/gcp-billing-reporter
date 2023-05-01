@@ -7,7 +7,7 @@ resource "tfe_project" "project" {
 resource "tfe_workspace" "workspace" {
   name         = var.tfc_workspace_name
   organization = var.tfc_organization_name
-  # project_id          = tfe_project.project.id
+  project_id   = tfe_project.project.id
   # speculative_enabled = true
   # auto_apply          = false
   # working_directory   = "terraform"

@@ -91,7 +91,8 @@ resource "google_project_iam_member" "billing_report" {
     "roles/cloudfunctions.developer",
     "roles/logging.logWriter",
     "roles/storage.admin",
-    "roles/iam.serviceAccountUser"
+    "roles/iam.serviceAccountUser",
+    "roles/secretmanager.admin"
   ])
   role   = each.key
   member = "serviceAccount:${google_service_account.billing_reporter.email}"
