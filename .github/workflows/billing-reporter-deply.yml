@@ -19,17 +19,17 @@ jobs:
         with:
           workload_identity_provider: ${{ vars.GH_GCP_WORKLOAD_IDENTITY_PROVIDER }}
           service_account: ${{ vars.GH_GCP_SERVICE_ACCOUNT }}
-      # - id: "deploy"
-      #   uses: "google-github-actions/deploy-cloud-functions@v1"
-      #   with:
-      #     name: "billing-reporter"
-      #     project_id: ${{ vars.GCP_PROJECT_ID }}
-      #     region: "us-central1"
-      #     runtime: "python311"
-      #     entry_point: "main"
-      #     source_dir: "src"
-      #     description: "Report GCP cost to the slack channel"
-      #     service_account_email: ${{ vars.BILLING_REPORTER_GCP_SERVICE_ACCOUNT }}
-      #     memory_mb: "256"
-      #     event_trigger_type: "providers/cloud.pubsub/eventTypes/topic.publish."
-      #     event_trigger_resource: ${{ vars.BILLING_REPORTER_PUBSUB_TOPIC }}
+      - id: "deploy"
+        uses: "google-github-actions/deploy-cloud-functions@v1"
+        with:
+          name: "billing-reporter"
+          project_id: ${{ vars.GCP_PROJECT_ID }}
+          region: "us-central1"
+          runtime: "python311"
+          entry_point: "main"
+          source_dir: "src"
+          description: "Report GCP cost to the slack channel"
+          service_account_email: ${{ vars.BILLING_REPORTER_GCP_SERVICE_ACCOUNT }}
+          memory_mb: "256"
+          event_trigger_type: "providers/cloud.pubsub/eventTypes/topic.publish."
+          event_trigger_resource: ${{ vars.BILLING_REPORTER_PUBSUB_TOPIC }}
