@@ -9,7 +9,8 @@ locals {
     "cloudresourcemanager.googleapis.com",
     "secretmanager.googleapis.com",
     "cloudscheduler.googleapis.com",
-    "cloudfunctions.googleapis.com"
+    "cloudfunctions.googleapis.com",
+    "cloudbuild.googleapis.com"
   ]
 }
 
