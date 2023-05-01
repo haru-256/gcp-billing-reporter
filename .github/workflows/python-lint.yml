@@ -3,6 +3,9 @@ on:
   pull_request:
     paths:
       - "src/**"
+  push:
+    branches:
+      - "main"
 jobs:
   python-lint:
     runs-on: ubuntu-latest
