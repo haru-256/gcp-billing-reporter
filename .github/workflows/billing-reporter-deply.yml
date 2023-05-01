@@ -30,5 +30,5 @@ jobs:
           description: "Report GCP cost to the slack channel"
           service_account_email: ${{ vars.BILLING_REPORTER_GCP_SERVICE_ACCOUNT }}
           memory_mb: "256"
-          event_trigger_type: "providers/cloud.pubsub/eventTypes/topic.publish."
+          event_trigger_type: "providers/cloud.pubsub/eventTypes/topic.publish"
           event_trigger_resource: ${{ vars.BILLING_REPORTER_PUBSUB_TOPIC }}
