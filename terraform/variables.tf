@@ -33,12 +33,17 @@ variable "gcp_default_region" {
   description = "The name for your GCP default region"
 }
 
-variable "slack_webhook_url" {
+variable "gcp_billing_reporter_slack_webhook_url" {
   type        = string
-  description = "The url for slack webhook"
+  description = "slack webhook url for GCP Billing Reporter"
 }
 
 variable "owner_member_email" {
   type        = string
   description = "The owner member email"
+}
+
+variable "tfc_slack_webhook_url" {
+  type        = string
+  description = "slack webhook url for terraform cloud notification."
 }

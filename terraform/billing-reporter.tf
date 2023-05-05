@@ -71,7 +71,7 @@ resource "google_secret_manager_secret" "slack_webhook_url" {
 resource "google_secret_manager_secret_version" "slack_webhook_url" {
   secret = google_secret_manager_secret.slack_webhook_url.id
 
-  secret_data = var.slack_webhook_url
+  secret_data = var.gcp_billing_reporter_slack_webhook_url
 }
 
 # billing reporter service account
