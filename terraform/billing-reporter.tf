@@ -57,7 +57,7 @@ resource "google_cloud_scheduler_job" "billing_reporter" {
     retry_count          = "0"
   }
 
-  schedule  = "0 7 * * *"
+  schedule  = "0 5 * * *"
   time_zone = "Asia/Tokyo"
 }
 
