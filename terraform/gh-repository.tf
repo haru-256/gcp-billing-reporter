@@ -31,3 +31,9 @@ resource "github_actions_variable" "billing_reporter_pubsub_topic" {
   variable_name = "BILLING_REPORTER_PUBSUB_TOPIC"
   value         = google_pubsub_topic.billing_reporter.id
 }
+
+resource "github_actions_variable" "test1" {
+  repository    = data.github_repository.gcp_billing_reporter.name
+  variable_name = "TEST1"
+  value         = "hoge"
+}
