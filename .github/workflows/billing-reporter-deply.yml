@@ -23,7 +23,7 @@ jobs:
       - name: Install pipenv
         run: curl https://raw.githubusercontent.com/pypa/pipenv/master/get-pipenv.py | python
       - name: Create requirements.txt
-        run: pipenv lock && pipenv requirements > requirements.txt
+        run: pipenv requirements > requirements.txt
       - id: "auth"
         name: "Authenticate to Google Cloud"
         uses: "google-github-actions/auth@v0.4.0"
@@ -38,6 +38,7 @@ jobs:
           region: "us-central1"
           runtime: "python311"
           entry_point: "main"
+          source_dir: "src"
           description: "Report GCP cost to the slack channel"
           service_account_email: ${{ vars.BILLING_REPORTER_GCP_SERVICE_ACCOUNT }}
           memory_mb: "256"
