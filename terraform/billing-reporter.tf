@@ -65,7 +65,7 @@ resource "google_cloud_scheduler_job" "billing_reporter" {
 resource "google_secret_manager_secret" "slack_webhook_url" {
   secret_id = "SLACK_WEBHOOK_URL"
   replication {
-    automatic = true
+    auto {}
   }
 }
 resource "google_secret_manager_secret_version" "slack_webhook_url" {
