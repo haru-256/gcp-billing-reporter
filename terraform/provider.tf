@@ -10,7 +10,7 @@ terraform {
   required_providers {
     tfe = {
       source  = "hashicorp/tfe"
-      version = "~> 0.44.1"
+      version = "~> 0.52.0"
     }
     google = {
       source  = "hashicorp/google"
@@ -22,7 +22,7 @@ terraform {
     }
     github = {
       source  = "integrations/github"
-      version = "~>5.23.0"
+      version = "~>6.0.0"
     }
   }
 }
