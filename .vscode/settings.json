@@ -1,6 +1,0 @@
-{
-  "python.linting.flake8Args": ["--config=src/.flake8"],
-  "yaml.schemas": {
-    "https://json.schemastore.org/github-workflow.json": "file:///Users/yohei/Documents/projects/gcp-billing-reporter/.github/workflow/python-linter.yml"
-  }
-}
