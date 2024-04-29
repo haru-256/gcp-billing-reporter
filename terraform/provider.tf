@@ -14,15 +14,15 @@ terraform {
     }
     google = {
       source  = "hashicorp/google"
-      version = "~>5.18.0"
+      version = "~>5.22.0"
     }
     google-beta = {
       source  = "hashicorp/google-beta"
-      version = "~>4.63.1"
+      version = "~>5.22.0"
     }
     github = {
       source  = "integrations/github"
-      version = "~>6.0.0"
+      version = "~>6.2.1"
     }
   }
 }
