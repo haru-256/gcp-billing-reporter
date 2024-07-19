@@ -8,7 +8,7 @@ create or replace table function `haru256-billing-report.all_billing_data.calc_g
   billing_table as (
     select
       *
-    from `haru256-billing-report.all_billing_data.gcp_billing_export_resource_v1_01D25E_D97B0C_ADC50F`
+    from `haru256-billing-report.all_billing_data.gcp_billing_export_resource_v1_013793_96F362_CD02DD`
     where
       date(_PARTITIONTIME, "Asia/Tokyo") between start_date_jst and end_date_jst
   )
