@@ -59,7 +59,10 @@ def fetch_secret_version(project_id: str, secret_id: str, version_id: str) -> st
 
 
 def build_message(
-    start_date_jst: str, end_date_jst: str, cost_df: pd.DataFrame, processed_gib_bytes: int
+    start_date_jst: str,
+    end_date_jst: str,
+    cost_df: pd.DataFrame,
+    processed_gib_bytes: int,
 ) -> list[dict[str, Any]]:
     """Build message that is sent to slack
 
@@ -76,9 +79,12 @@ def build_message(
         cost_text = "No Billing Cost."
     else:
         cost_text = "\n".join(
-            [f"• {row.service_name}: {row.total:.2f} yen" for _, row in cost_df.iterrows()]
+            [
+                f"• {row.service_name}: {row.total:.2f} yen"
+                for _, row in cost_df.iterrows()
+            ]
         )
-    billing_report_url = "https://console.cloud.google.com/billing/01D25E-D97B0C-ADC50F"
+    billing_report_url = "https://console.cloud.google.com/billing/013793-96F362-CD02DD"
     blocks = [
         {
             "type": "section",
