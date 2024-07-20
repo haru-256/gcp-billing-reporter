@@ -4,7 +4,7 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-slack-sdk = "~=3.21.3"
+slack-sdk = "~=3.31.0"
 python-dateutil = "~=2.8.2"
 google-cloud-bigquery = "~=3.10.0"
 google-cloud-secret-manager = "~=2.20.0"
