@@ -62,6 +62,7 @@ resource "google_cloud_scheduler_job" "billing_reporter" {
 }
 
 # Use this secret in cloud run endpoint
+# slack webhook url
 resource "google_secret_manager_secret" "slack_webhook_url" {
   secret_id = "SLACK_WEBHOOK_URL"
   replication {
@@ -69,9 +70,19 @@ resource "google_secret_manager_secret" "slack_webhook_url" {
   }
 }
 resource "google_secret_manager_secret_version" "slack_webhook_url" {
-  secret = google_secret_manager_secret.slack_webhook_url.id
-
+  secret      = google_secret_manager_secret.slack_webhook_url.id
   secret_data = var.gcp_billing_reporter_slack_webhook_url
+}
+# billing accound id
+resource "google_secret_manager_secret" "billing_account_id" {
+  secret_id = "BILLING_ACCOUNT_ID"
+  replication {
+    auto {}
+  }
+}
+resource "google_secret_manager_secret_version" "billing_account_id" {
+  secret      = google_secret_manager_secret.billing_account_id.id
+  secret_data = var.gcp_billing_reporter_billing_accound_id
 }
 
 # billing reporter service account
