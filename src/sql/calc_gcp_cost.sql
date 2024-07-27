@@ -31,5 +31,21 @@ create or replace table function `haru256-billing-report.all_billing_data.calc_g
   from main
 );
 
-select *
-from `haru256-billing-report.all_billing_data.calc_gcp_cost`("{start_date_jst}", "{end_date_jst}")
+with
+main as (
+  select *
+  from `haru256-billing-report.all_billing_data.calc_gcp_cost`("{start_date_jst}", "{end_date_jst}")
+)
+
+, __test as (
+  select
+    if(
+      exists(select 1 from main)
+      , true
+      , error("No data found")
+    ) as has_data
+)
+
+select main.*
+from __test, main
+where __test.has_data
