@@ -82,7 +82,7 @@ resource "google_secret_manager_secret" "billing_account_id" {
 }
 resource "google_secret_manager_secret_version" "billing_account_id" {
   secret      = google_secret_manager_secret.billing_account_id.id
-  secret_data = var.gcp_billing_reporter_billing_accound_id
+  secret_data = var.gcp_billing_reporter_billing_account_id
 }
 
 # billing reporter service account

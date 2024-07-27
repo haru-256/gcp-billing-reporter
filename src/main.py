@@ -23,6 +23,9 @@ def calc_gcp_cost(
     Returns:
         tuple[pd.DataFrame, Any]: gcp cost dataframe and cost of query
     """
+    if not isinstance(billing_account_id, str) or not billing_account_id:
+        raise ValueError("Invalid billing_account_id provided.")
+
     sql_path = pathlib.Path("./sql/calc_gcp_cost.sql")
     with open(sql_path, "r") as fo:
         query = fo.read()

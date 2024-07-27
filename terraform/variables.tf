@@ -38,7 +38,7 @@ variable "gcp_billing_reporter_slack_webhook_url" {
   description = "slack webhook url for GCP Billing Reporter"
 }
 
-variable "gcp_billing_reporter_billing_accound_id" {
+variable "gcp_billing_reporter_billing_account_id" {
   type        = string
   description = "billing accound id for GCP Billing Reporter"
 }
