@@ -25,6 +25,7 @@ def calc_gcp_cost(
     """
     if not isinstance(billing_account_id, str) or not billing_account_id:
         raise ValueError("Invalid billing_account_id provided.")
+    billing_account_id = billing_account_id.replace("-", "_")
 
     sql_path = pathlib.Path("./sql/calc_gcp_cost.sql")
     with open(sql_path, "r") as fo:
