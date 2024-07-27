@@ -11,19 +11,29 @@ from slack_sdk.webhook import WebhookClient
 from slack_sdk.webhook.webhook_response import WebhookResponse
 
 
-def calc_gcp_cost(start_date_jst: str, end_date_jst: str) -> tuple[pd.DataFrame, Any]:
+def calc_gcp_cost(
+    billing_account_id: str, start_date_jst: str, end_date_jst: str
+) -> tuple[pd.DataFrame, Any]:
     """Calculate gcp const
     Args:
+        billing_account_id (str): billing account id
         start_date_jst (str): start date (jst)
         end_date_jst (str): end date (jst)
 
     Returns:
         tuple[pd.DataFrame, Any]: gcp cost dataframe and cost of query
     """
+    if not isinstance(billing_account_id, str) or not billing_account_id:
+        raise ValueError("Invalid billing_account_id provided.")
+
     sql_path = pathlib.Path("./sql/calc_gcp_cost.sql")
     with open(sql_path, "r") as fo:
         query = fo.read()
-        query = query.format(start_date_jst=start_date_jst, end_date_jst=end_date_jst)
+        query = query.format(
+            billing_account_id=billing_account_id,
+            start_date_jst=start_date_jst,
+            end_date_jst=end_date_jst,
+        )
     bq_client = bigquery.Client(project="haru256-billing-report")
     query_job = bq_client.query(query)
     df: pd.DataFrame = query_job.result().to_dataframe()
@@ -59,6 +69,7 @@ def fetch_secret_version(project_id: str, secret_id: str, version_id: str) -> st
 
 
 def build_message(
+    billing_account_id: str,
     start_date_jst: str,
     end_date_jst: str,
     cost_df: pd.DataFrame,
@@ -67,6 +78,7 @@ def build_message(
     """Build message that is sent to slack
 
     Args:
+        billing_account_id (str): billing account id
         start_date_jst (str): start date (jst)
         end_date_jst (str): end date (jst)
         cost_df (pd.DataFrame): gcp cost dataframe
@@ -84,7 +96,9 @@ def build_message(
                 for _, row in cost_df.iterrows()
             ]
         )
-    billing_report_url = "https://console.cloud.google.com/billing/013793-96F362-CD02DD"
+    billing_report_url = (
+        f"https://console.cloud.google.com/billing/{billing_account_id}"
+    )
     blocks = [
         {
             "type": "section",
@@ -122,6 +136,10 @@ def report_gcp_cost_to_slack() -> WebhookResponse:
     slack_webhook_url = fetch_secret_version(
         "haru256-billing-report", "SLACK_WEBHOOK_URL", "latest"
     )
+    billing_account_id = fetch_secret_version(
+        "haru256-billing-report", "BILLING_ACCOUNT_ID", "latest"
+    )
+
     webhook = WebhookClient(slack_webhook_url)
 
     end_datetime_jst = datetime.now(tz=tz.gettz("Asia/Tokyo"))
@@ -129,8 +147,12 @@ def report_gcp_cost_to_slack() -> WebhookResponse:
     start_datetime_jst = end_datetime_jst - relativedelta(weeks=2)
     start_date_jst = start_datetime_jst.strftime("%Y-%m-%d")
 
-    cost_df, processed_gib_bytes = calc_gcp_cost(start_date_jst, end_date_jst)
-    blocks = build_message(start_date_jst, end_date_jst, cost_df, processed_gib_bytes)
+    cost_df, processed_gib_bytes = calc_gcp_cost(
+        billing_account_id, start_date_jst, end_date_jst
+    )
+    blocks = build_message(
+        billing_account_id, start_date_jst, end_date_jst, cost_df, processed_gib_bytes
+    )
     response = webhook.send(
         text="Billing Report",
         blocks=blocks,
