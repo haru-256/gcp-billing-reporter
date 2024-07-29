@@ -92,14 +92,9 @@ def build_message(
         cost_text = "No Billing Cost."
     else:
         cost_text = "\n".join(
-            [
-                f"• {row.service_name}: {row.total:.2f} yen"
-                for _, row in cost_df.iterrows()
-            ]
+            [f"• {row.service_name}: {row.total:.2f} yen" for _, row in cost_df.iterrows()]
         )
-    billing_report_url = (
-        f"https://console.cloud.google.com/billing/{billing_account_id}"
-    )
+    billing_report_url = f"https://console.cloud.google.com/billing/{billing_account_id}"
     blocks = [
         {
             "type": "section",
@@ -148,9 +143,7 @@ def report_gcp_cost_to_slack() -> WebhookResponse:
     start_datetime_jst = end_datetime_jst - relativedelta(weeks=2)
     start_date_jst = start_datetime_jst.strftime("%Y-%m-%d")
 
-    cost_df, processed_gib_bytes = calc_gcp_cost(
-        billing_account_id, start_date_jst, end_date_jst
-    )
+    cost_df, processed_gib_bytes = calc_gcp_cost(billing_account_id, start_date_jst, end_date_jst)
     blocks = build_message(
         billing_account_id, start_date_jst, end_date_jst, cost_df, processed_gib_bytes
     )

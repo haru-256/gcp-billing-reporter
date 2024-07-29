@@ -5,15 +5,12 @@
 all: format lint requirements # execute all target
 
 format: # format python file by black formatter and isort
-	black .
-	isort --atomic .
+	ruff check --fix
+	ruff format
 
 lint: # lint python file by flake8 and mypy
-	flake8 .
+	ruff check
 	mypy .
-
-requirements: Pipfile # lock and generate requirements from Pipfile
-	pipenv lock && pipenv requirements > requirements.txt
 
 install: Pipfile.lock # install dependencies from Pipfile.lock
 	pipenv sync --dev
