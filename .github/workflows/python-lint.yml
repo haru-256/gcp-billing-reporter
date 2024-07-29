@@ -25,9 +25,9 @@ jobs:
       - name: Install dependencies
         working-directory: src
         run: pipenv sync --dev
-      - name: Lint with flake8
+      - name: Lint with ruff
         working-directory: src
-        run: pipenv run flake8 .
+        run: pipenv run ruff check
       - name: Lint with mypy
         working-directory: src
         run: pipenv run mypy .
