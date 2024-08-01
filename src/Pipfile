@@ -5,7 +5,7 @@ name = "pypi"
 
 [packages]
 slack-sdk = "~=3.31.0"
-python-dateutil = "~=2.8.2"
+python-dateutil = "~=2.9.0"
 google-cloud-bigquery = "~=3.10.0"
 google-cloud-secret-manager = "~=2.20.0"
 google-crc32c = "~=1.5.0"
