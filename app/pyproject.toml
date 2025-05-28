@@ -15,7 +15,7 @@ dependencies = [
   "google-cloud-secret-manager~=2.20.0",
   "google-crc32c~=1.5.0",
   "pandas~=2.2.2",
-  "db-dtypes~=1.2.0",
+  "db-dtypes~=1.4.3",
 ]
 
 [dependency-groups]
