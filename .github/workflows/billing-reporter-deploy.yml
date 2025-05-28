@@ -18,15 +18,13 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-      - name: Set up Python
-        uses: actions/setup-python@v5
+      - name: Install uv
+        uses: astral-sh/setup-uv@v6
         with:
-          python-version: "3.11"
-          cache: "pipenv"
-      - name: Install pipenv
-        run: curl https://raw.githubusercontent.com/pypa/pipenv/master/get-pipenv.py | python
+          enable-cache: true
+          cache-dependency-glob: "src/pyproject.toml"
       - name: Create requirements.txt
-        run: pipenv requirements > requirements.txt
+        run: uv export --format=requirements.txt > requirements.txt
       - id: "auth"
         name: "Authenticate to Google Cloud"
         uses: "google-github-actions/auth@v2.1.3"

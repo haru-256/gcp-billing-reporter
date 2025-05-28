@@ -15,19 +15,12 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-      - name: Set up Python
-        uses: actions/setup-python@v5
+      - name: Install uv
+        uses: astral-sh/setup-uv@v6
         with:
-          python-version: "3.11"
-          cache: "pipenv"
-      - name: Install pipenv
-        run: curl https://raw.githubusercontent.com/pypa/pipenv/master/get-pipenv.py | python
-      - name: Install dependencies
-        working-directory: src
-        run: pipenv sync --dev
-      - name: Lint with ruff
-        working-directory: src
-        run: pipenv run ruff check
-      - name: Lint with mypy
-        working-directory: src
-        run: pipenv run mypy .
+          enable-cache: true
+          cache-dependency-glob: "src/pyproject.toml"
+      - name: Install the project
+        run: make install
+      - name: Lint
+        run: make lint
