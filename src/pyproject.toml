@@ -1,3 +1,28 @@
+[project]
+name = "gcp-billing-reporter"
+version = "0.1.0"
+description = "A tool for reporting GCP billing data"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+  "loguru>=0.7.3",
+  "pydantic>=2.11.3",
+  "pydantic-settings>=2.8.1",
+  "google-cloud-aiplatform>=1.88.0",
+  "slack-sdk~=3.31.0",
+  "python-dateutil~=2.9.0",
+  "google-cloud-bigquery~=3.10.0",
+  "google-cloud-secret-manager~=2.20.0",
+  "google-crc32c~=1.5.0",
+  "pandas~=2.2.2",
+  "db-dtypes~=1.2.0",
+]
+
+[dependency-groups]
+dev = ["pandas-stubs~=2.2.3.250527", "types-python-dateutil~=2.9.0.20250516"]
+test = ["pytest~=8.3.4", "pytest-console-scripts~=1.4.1"]
+lint = ["ruff~=0.8.4", "mypy~=1.14.1"]
+
 [tool.ruff]
 target-version = "py311"
 line-length = 100
@@ -8,7 +33,20 @@ extend-select = ["I"]
 [tool.mypy]
 python_version = "3.11"
 exclude = [".venv"]
+plugins = ["pydantic.mypy"]
+
+follow_imports = "silent"
+warn_redundant_casts = true
+warn_unused_ignores = true
+disallow_any_generics = true
+no_implicit_reexport = true
+disallow_untyped_defs = true
 
 [[tool.mypy.overrides]]
 module = "google_crc32c"
 ignore_missing_imports = true
+
+[tool.pydantic-mypy]
+init_forbid_extra = true
+init_typed = true
+warn_required_dynamic_aliases = true
