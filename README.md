@@ -1,5 +1,9 @@
 # Billing Reporter
 
+[![Python CI](https://github.com/haru-256/gcp-billing-reporter/actions/workflows/python-ci.yml/badge.svg)](https://github.com/haru-256/gcp-billing-reporter/actions/workflows/python-ci.yml)
+[![Terraform Lint](https://github.com/haru-256/gcp-billing-reporter/actions/workflows/terrafrom-lint.yml/badge.svg)](https://github.com/haru-256/gcp-billing-reporter/actions/workflows/terrafrom-lint.yml)
+[![Billing Reporter Deploy](https://github.com/haru-256/gcp-billing-reporter/actions/workflows/billing-reporter-deploy.yml/badge.svg)](https://github.com/haru-256/gcp-billing-reporter/actions/workflows/billing-reporter-deploy.yml)
+
 ## Google Cloud Architecture
 
 ```mermaid
