@@ -1,4 +1,4 @@
-.PHONY: format lint all requirements
+.PHONY: format lint all requirements run-local
 
 .DEFAULT_GOAL = help
 
@@ -14,6 +14,9 @@ lint: # lint python file by flake8 and mypy
 
 install: Pipfile.lock # install dependencies from Pipfile.lock
 	pipenv sync --dev
+
+run-local: # run locally
+	pipenv run python main.py
 
 help: # Show help for each of the Makefile recipes.
 	@grep -E '^[a-zA-Z0-9 -]+:.*#'  Makefile | sort | while read -r l; do printf "\033[1;32m$$(echo $$l | cut -f 1 -d':')\033[00m:$$(echo $$l | cut -f 2- -d'#')\n"; done

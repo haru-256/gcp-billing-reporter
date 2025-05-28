@@ -27,8 +27,7 @@ create or replace table function `haru256-billing-report.all_billing_data.calc_g
       service.description
   )
 
-  select *
-  from main
+  select * from main
 );
 
 with
@@ -49,3 +48,4 @@ main as (
 select main.*
 from __test, main
 where __test.has_data
+order by total desc, service_name asc
