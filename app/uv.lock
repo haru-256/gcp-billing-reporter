@@ -107,7 +107,7 @@ wheels = [
 
 [[package]]
 name = "db-dtypes"
-version = "1.2.0"
+version = "1.4.3"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "numpy" },
@@ -115,9 +115,9 @@ dependencies = [
     { name = "pandas" },
     { name = "pyarrow" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/31/c3/9dc7790d181a6b1bafa03deabf3ebd58bd5cb280f718dca14833f830d43e/db-dtypes-1.2.0.tar.gz", hash = "sha256:3531bb1fb8b5fbab33121fe243ccc2ade16ab2524f4c113b05cc702a1908e6ea", size = 24157, upload-time = "2023-12-11T23:07:48.672Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/7d/c8/83fd7a11ef8d960da6c58d1a36b430b0a1818ae7a1da6efe887d96c35f40/db_dtypes-1.4.3.tar.gz", hash = "sha256:d3cb08c32939d24e05501f17694be8c1c54cfb4620d61fb56fb311e8c3d8885e", size = 33379, upload-time = "2025-05-12T13:54:21.736Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/4e/5c/72b74daf6655db6f6afc2b3bc44359c7953004ef4630325a3ae0efc50872/db_dtypes-1.2.0-py2.py3-none-any.whl", hash = "sha256:6320bddd31d096447ef749224d64aab00972ed20e4392d86f7d8b81ad79f7ff0", size = 14533, upload-time = "2023-12-11T23:07:46.52Z" },
+    { url = "https://files.pythonhosted.org/packages/db/91/66065d933b4814295fd0ddc16a66ef193dff14bf8d15895723f38640a3ab/db_dtypes-1.4.3-py3-none-any.whl", hash = "sha256:a1c92b819af947fae1701d80a71f2a0eac08f825ca52cf0c68aeba80577ae966", size = 18110, upload-time = "2025-05-12T13:54:20.146Z" },
 ]
 
 [[package]]
@@ -163,7 +163,7 @@ test = [
 
 [package.metadata]
 requires-dist = [
-    { name = "db-dtypes", specifier = "~=1.2.0" },
+    { name = "db-dtypes", specifier = "~=1.4.3" },
     { name = "google-cloud-aiplatform", specifier = ">=1.88.0" },
     { name = "google-cloud-bigquery", specifier = "~=3.10.0" },
     { name = "google-cloud-secret-manager", specifier = "~=2.20.0" },
