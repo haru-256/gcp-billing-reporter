@@ -1,4 +1,4 @@
-name: Python Lint
+name: Python CI
 on:
   pull_request:
     paths:
@@ -10,8 +10,11 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 jobs:
-  python-lint:
+  python-ci:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: src
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
