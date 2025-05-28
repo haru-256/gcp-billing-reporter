@@ -1,8 +1,8 @@
 version: 2
 updates:
   # python
-  - package-ecosystem: "pip"
-    directory: "src/"
+  - package-ecosystem: "uv"
+    directory: "app/"
     schedule:
       interval: "monthly"
   # terraform
