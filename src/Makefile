@@ -15,7 +15,7 @@ lint: # lint python file by flake8 and mypy
 install: Pipfile.lock # install dependencies from Pipfile.lock
 	pipenv sync --dev
 
-run-local: # run in local
+run-local: # run locally
 	pipenv run python main.py
 
 help: # Show help for each of the Makefile recipes.
