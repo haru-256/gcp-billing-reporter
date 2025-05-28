@@ -2,7 +2,7 @@ name: Python CI
 on:
   pull_request:
     paths:
-      - "src/**"
+      - "app/**"
   push:
     branches:
       - "main"
@@ -22,7 +22,7 @@ jobs:
         uses: astral-sh/setup-uv@v6
         with:
           enable-cache: true
-          cache-dependency-glob: "src/pyproject.toml"
+          cache-dependency-glob: "app/pyproject.toml"
       - name: Install the project
         run: make install
       - name: Lint

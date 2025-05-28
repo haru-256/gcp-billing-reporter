@@ -20,14 +20,13 @@ flowchart LR
     end
 ```
 
-
 ## Directory
 
 ```sh
 .
 ├── README.md
 ├── .github/workflows/
-├── src/
+├── app/
 └── terraform/
 ```
 
