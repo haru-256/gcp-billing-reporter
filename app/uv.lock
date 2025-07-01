@@ -166,7 +166,7 @@ requires-dist = [
     { name = "db-dtypes", specifier = "~=1.4.3" },
     { name = "google-cloud-aiplatform", specifier = ">=1.88.0" },
     { name = "google-cloud-bigquery", specifier = "~=3.33.0" },
-    { name = "google-cloud-secret-manager", specifier = "~=2.23.3" },
+    { name = "google-cloud-secret-manager", specifier = "~=2.24.0" },
     { name = "google-crc32c", specifier = "~=1.5.0" },
     { name = "loguru", specifier = ">=0.7.3" },
     { name = "pandas", specifier = "~=2.2.2" },
@@ -299,7 +299,7 @@ wheels = [
 
 [[package]]
 name = "google-cloud-secret-manager"
-version = "2.23.3"
+version = "2.24.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "google-api-core", extra = ["grpc"] },
@@ -308,9 +308,9 @@ dependencies = [
     { name = "proto-plus" },
     { name = "protobuf" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/99/73/533fca3a94ef6cf57fbd0cf6fa57c8865ba8173542a505272869a1b7be85/google_cloud_secret_manager-2.23.3.tar.gz", hash = "sha256:598c4c0a9d10d49d500eb4aea3255dff250aa2f92c028f5c97e3b367f768c808", size = 268671, upload-time = "2025-04-17T19:01:20.023Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/58/7a/2fa6735ec693d822fe08a76709c4d95d9b5b4c02e83e720497355039d2ee/google_cloud_secret_manager-2.24.0.tar.gz", hash = "sha256:ce573d40ffc2fb7d01719243a94ee17aa243ea642a6ae6c337501e58fbf642b5", size = 269516, upload-time = "2025-06-05T22:22:22.965Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/1e/ec/230606fd826d466ee5b014c6a3f04d47038b1146a3a560645889817d9fea/google_cloud_secret_manager-2.23.3-py3-none-any.whl", hash = "sha256:fe06ebb2f71eb739ecc6c14ea9e8dafcb9bbc6123b78b2f8986ece6733d23a1a", size = 217097, upload-time = "2025-04-17T19:01:18.173Z" },
+    { url = "https://files.pythonhosted.org/packages/be/af/db1217cae1809e69a4527ee6293b82a9af2a1fb2313ad110c775e8f3c820/google_cloud_secret_manager-2.24.0-py3-none-any.whl", hash = "sha256:9bea1254827ecc14874bc86c63b899489f8f50bfe1442bfb2517530b30b3a89b", size = 218050, upload-time = "2025-06-10T02:02:19.88Z" },
 ]
 
 [[package]]
