@@ -228,7 +228,7 @@ wheels = [
 
 [[package]]
 name = "google-cloud-aiplatform"
-version = "1.94.0"
+version = "1.100.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "docstring-parser" },
@@ -245,9 +245,9 @@ dependencies = [
     { name = "shapely" },
     { name = "typing-extensions" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/3c/a1/72dc8524e5255ee79e4e153f500a9a03ece3ea1de61a0e59a6fb5ce36406/google_cloud_aiplatform-1.94.0.tar.gz", hash = "sha256:5429dfaa953eef90e48e16fb2a6be82f26c5d4a9a0e53178fcf6f837b528373e", size = 9150001, upload-time = "2025-05-22T15:10:24.309Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/63/80/990769353fce80ba24e34d9b5b5020a6c523677151209d016a479e5e9b21/google_cloud_aiplatform-1.100.0.tar.gz", hash = "sha256:43d88d17c1593b29d4edbda14f95926cca8cd4ddb45fd6b778eab0d2abb3d45a", size = 9433644, upload-time = "2025-06-26T22:50:25.74Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/cd/eb/663a100222b0b04141de5d0bac38e64d6248121c9989c72e165b9b1e9090/google_cloud_aiplatform-1.94.0-py2.py3-none-any.whl", hash = "sha256:cfb198d322133559c076677fbff5b51568ca7759f228c6fc5273e091c2752a41", size = 7636054, upload-time = "2025-05-22T15:10:20.734Z" },
+    { url = "https://files.pythonhosted.org/packages/4e/70/af0891c0628a35dd8d54943472c45655d48d58945f1e692e5f4f2ffdfb74/google_cloud_aiplatform-1.100.0-py2.py3-none-any.whl", hash = "sha256:5707a30fc85d25ac1ca67c14754209a41089b170d4b88bde22b4cd26f449d62b", size = 7846052, upload-time = "2025-06-26T22:50:22.865Z" },
 ]
 
 [[package]]
