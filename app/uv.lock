@@ -165,7 +165,7 @@ test = [
 requires-dist = [
     { name = "db-dtypes", specifier = "~=1.4.3" },
     { name = "google-cloud-aiplatform", specifier = ">=1.88.0" },
-    { name = "google-cloud-bigquery", specifier = "~=3.33.0" },
+    { name = "google-cloud-bigquery", specifier = "~=3.35.1" },
     { name = "google-cloud-secret-manager", specifier = "~=2.23.3" },
     { name = "google-crc32c", specifier = "~=1.5.0" },
     { name = "loguru", specifier = ">=0.7.3" },
@@ -252,7 +252,7 @@ wheels = [
 
 [[package]]
 name = "google-cloud-bigquery"
-version = "3.33.0"
+version = "3.35.1"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "google-api-core", extra = ["grpc"] },
@@ -263,9 +263,9 @@ dependencies = [
     { name = "python-dateutil" },
     { name = "requests" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/7a/f6/06c37501d4eeefa81ee7a8913cc2e8d404818cc611cb259edae740c75a68/google_cloud_bigquery-3.33.0.tar.gz", hash = "sha256:a5d306b277341bc308e6b9374c0f781d2382d81743764a4f28146c6dad60bbe2", size = 488885, upload-time = "2025-05-19T23:42:33.379Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/44/e4/9cf03fa81fefd1b9811a7cd6e398804ae0de3b6a4edef810e2acd45cabbc/google_cloud_bigquery-3.35.1.tar.gz", hash = "sha256:599f26cacf190acfe88000f6cc5f4bc9e6baac7899e4f406ca054f1906f71960", size = 496433, upload-time = "2025-07-24T15:09:04.108Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/e8/9e/7111b94311bbf8d7d4ff07a5bd962ad5b6a16bb52c7a15ae10c494a71b91/google_cloud_bigquery-3.33.0-py3-none-any.whl", hash = "sha256:7e98a3c383c3744e711fe85ce5507fda8c876d6d48b2f131e06bbd4aff87b064", size = 253481, upload-time = "2025-05-19T23:42:31.741Z" },
+    { url = "https://files.pythonhosted.org/packages/63/50/96fe9bc5b83d3a421e91ed8edc2535de45957e9af398273e3ecb5c3a1094/google_cloud_bigquery-3.35.1-py3-none-any.whl", hash = "sha256:6739a6ba63c6d80735ca2b34b1df2090ff473b80c1a62354caa2debe6dbbd961", size = 256877, upload-time = "2025-07-24T15:09:02.443Z" },
 ]
 
 [[package]]
