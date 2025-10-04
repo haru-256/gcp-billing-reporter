@@ -10,7 +10,8 @@ locals {
     "secretmanager.googleapis.com",
     "cloudscheduler.googleapis.com",
     "cloudfunctions.googleapis.com",
-    "cloudbuild.googleapis.com"
+    "cloudbuild.googleapis.com",
+    "eventarc.googleapis.com" # for cloud function 2nd gen
   ]
 }
 
