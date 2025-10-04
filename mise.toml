@@ -1,5 +1,6 @@
 [tools]
 act = "0.2.82"
+python = "3.11.13"
 direnv = "2.37.1"
 gcloud = "541.0.0"
 terraform = "1.13.3"
