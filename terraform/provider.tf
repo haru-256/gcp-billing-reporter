@@ -1,5 +1,5 @@
 terraform {
-  required_version = "~>1.4.6"
+  required_version = "~>1.13.3"
   cloud {
     organization = "haru256"
     hostname     = "app.terraform.io"
@@ -10,19 +10,19 @@ terraform {
   required_providers {
     tfe = {
       source  = "hashicorp/tfe"
-      version = "~> 0.66.0"
+      version = "~> 0.70.0"
     }
     google = {
       source  = "hashicorp/google"
-      version = "~>6.37.0"
+      version = "~>7.5.0"
     }
     google-beta = {
       source  = "hashicorp/google-beta"
-      version = "~>6.37.0"
+      version = "~>7.5.0"
     }
     github = {
       source  = "integrations/github"
-      version = "~>6.2.1"
+      version = "~>6.6.0"
     }
   }
 }
