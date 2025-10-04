@@ -3,6 +3,7 @@ on:
   push:
     branches:
       - "main"
+  workflow_dispatch:
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
@@ -32,7 +33,7 @@ jobs:
           workload_identity_provider: ${{ vars.GH_GCP_WORKLOAD_IDENTITY_PROVIDER }}
           service_account: ${{ vars.GH_GCP_SERVICE_ACCOUNT }}
       - id: "deploy"
-        uses: "google-github-actions/deploy-cloud-functions@v2"
+        uses: "google-github-actions/deploy-cloud-functions@v4"
         with:
           name: "billing-reporter"
           project_id: ${{ vars.GCP_PROJECT_ID }}
@@ -41,7 +42,9 @@ jobs:
           entry_point: "main"
           source_dir: "app"
           description: "Report GCP cost to the slack channel"
-          service_account_email: ${{ vars.BILLING_REPORTER_GCP_SERVICE_ACCOUNT }}
-          memory_mb: "256"
-          event_trigger_type: "providers/cloud.pubsub/eventTypes/topic.publish"
-          event_trigger_resource: ${{ vars.BILLING_REPORTER_PUBSUB_TOPIC }}
+          service_account: ${{ vars.BILLING_REPORTER_GCP_SERVICE_ACCOUNT }}
+          min_instance_count: 0
+          max_instance_count: 1
+          memory: "256Mi"
+          event_trigger_type: "google.pubsub.topic.publish"
+          event_trigger_pubsub_topic: ${{ vars.BILLING_REPORTER_PUBSUB_TOPIC }}
