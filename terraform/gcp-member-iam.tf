@@ -20,7 +20,6 @@ resource "google_project_iam_member" "cloud_function_service_agent" {
     "roles/iam.serviceAccountUser",            # ランタイム用 SA の利用権限
     "roles/iam.serviceAccountTokenCreator",    # OIDC 等のトークン作成で必要になることがある
     "roles/storage.objectAdmin",               # gcf-v2-uploads バケットへの書き込み権限
-    "roles/storage.legacyBucketReader"         # バケットのメタデータ参照
   ])
   role   = each.key
   member = "serviceAccount:${var.gcp_cloud_function_service_agent}"
