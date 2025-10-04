@@ -46,5 +46,5 @@ jobs:
           min_instance_count: 0
           max_instance_count: 1
           memory: "256Mi"
-          event_trigger_type: "google.pubsub.topic.publish"
+          event_trigger_type: "google.cloud.pubsub.topic.v1.messagePublished"
           event_trigger_pubsub_topic: ${{ vars.BILLING_REPORTER_PUBSUB_TOPIC }}
