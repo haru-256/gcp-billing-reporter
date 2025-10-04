@@ -43,6 +43,11 @@ variable "gcp_billing_reporter_billing_account_id" {
   description = "billing accound id for GCP Billing Reporter"
 }
 
+variable "gcp_cloud_function_service_agent" {
+  type        = string
+  description = "The service agent for Cloud Function"
+}
+
 variable "owner_member_email" {
   type        = string
   description = "The owner member email"
