@@ -1,0 +1,8 @@
+[tools]
+act = "latest"
+direnv = "latest"
+gcloud = "latest"
+terraform = "latest"
+tflint = "latest"
+trivy = "latest"
+uv = "0.8.22"
