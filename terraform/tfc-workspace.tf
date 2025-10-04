@@ -4,6 +4,10 @@ resource "tfe_project" "project" {
   name         = var.tfc_project_name
 }
 
+resource "tfe_terraform_version" "test" {
+  version = "1.13.3"
+}
+
 resource "tfe_workspace" "workspace" {
   name                = var.tfc_workspace_name
   organization        = var.tfc_organization_name
