@@ -20,7 +20,7 @@ dependencies = [
 
 [dependency-groups]
 dev = ["pandas-stubs~=2.2.3.250527", "types-python-dateutil~=2.9.0.20250516"]
-test = ["pytest~=8.3.4", "pytest-console-scripts~=1.4.1"]
+test = ["pytest~=8.4.2", "pytest-console-scripts~=1.4.1"]
 lint = ["ruff~=0.8.4", "mypy~=1.14.1"]
 
 [tool.ruff]
