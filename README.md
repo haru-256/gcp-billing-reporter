@@ -82,7 +82,7 @@ Pythonのパッケージ管理には [uv](https://github.com/astral-sh/uv) を�
 
 ```bash
 cd app
-uv sync
+make install
 ```
 
 ### ローカル実行
