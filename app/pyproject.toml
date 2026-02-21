@@ -13,7 +13,7 @@ dependencies = [
   "python-dateutil~=2.9.0",
   "google-cloud-bigquery~=3.39.0",
   "google-cloud-secret-manager~=2.25.0",
-  "google-crc32c~=1.5.0",
+  "google-crc32c~=1.8.0",
   "pandas~=2.3.3",
   "db-dtypes~=1.4.3",
 ]
