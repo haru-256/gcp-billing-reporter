@@ -19,6 +19,10 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v6
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version-file: "app/.python-version"
       - name: Install uv
         uses: astral-sh/setup-uv@v7
         with:
@@ -38,7 +42,7 @@ jobs:
           name: "billing-reporter"
           project_id: ${{ vars.GCP_PROJECT_ID }}
           region: "us-central1"
-          runtime: "python311"
+          runtime: "python314"
           entry_point: "main"
           source_dir: "app"
           description: "Report GCP cost to the slack channel"

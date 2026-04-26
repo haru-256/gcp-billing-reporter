@@ -1,0 +1,42 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": ["config:best-practices"],
+  "timezone": "Asia/Tokyo",
+  "schedule": ["before 8am on the first day of the month"],
+  "minimumReleaseAge": "14 days",
+  "lockFileMaintenance": {
+    "enabled": true,
+    "automerge": false
+  },
+  "customManagers": [
+    {
+      "customType": "regex",
+      "managerFilePatterns": ["/^\\.github/workflows/.+\\.ya?ml$/"],
+      "matchStrings": [
+        "runtime:\\s*[\"']?python(?<major>\\d)(?<minor>\\d{2})[\"']?"
+      ],
+      "autoReplaceStringTemplate": "runtime: \"python{{{replace '.' '' newValue}}}\"",
+      "currentValueTemplate": "{{{major}}}.{{{minor}}}",
+      "datasourceTemplate": "python-version",
+      "versioningTemplate": "python",
+      "depNameTemplate": "python"
+    }
+  ],
+  "packageRules": [
+    {
+      "matchUpdateTypes": ["minor", "patch"],
+      "groupName": "minor and patch dependencies",
+      "automerge": false
+    },
+    {
+      "matchManagers": ["custom.regex"],
+      "matchDepNames": ["python"],
+      "allowedVersions": "/^\\d+\\.\\d+$/"
+    },
+    {
+      "matchDepNames": ["python"],
+      "groupName": "python runtime",
+      "automerge": false
+    }
+  ]
+}
