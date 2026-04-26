@@ -19,7 +19,11 @@ dependencies = [
 
 [dependency-groups]
 dev = ["pandas-stubs~=3.0.0.260204", "types-python-dateutil~=2.9.0.20260408"]
-test = ["pytest~=9.0.3", "pytest-console-scripts~=1.4.1"]
+test = [
+    "pytest~=9.0.3",
+    "pytest-console-scripts~=1.4.1",
+    "pytest-mock~=3.15.1",
+]
 lint = ["ruff~=0.15.12", "mypy~=1.20.2"]
 
 [tool.ruff]
@@ -27,6 +31,11 @@ line-length = 100
 
 [tool.ruff.lint]
 extend-select = ["I"]
+
+[tool.pytest.ini_options]
+markers = [
+  "live: tests that call live GCP and Slack integrations",
+]
 
 [tool.mypy]
 python_version = "3.14"

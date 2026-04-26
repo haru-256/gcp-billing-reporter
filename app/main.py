@@ -132,7 +132,7 @@ def report_gcp_cost_to_slack() -> WebhookResponse:
     Returns:
         WebhookResponse: the response from the slack webhook
     """
-    logger.info("Fetch secret")
+    logger.info("Fetching Slack webhook URL and billing account ID from Secret Manager")
     slack_webhook_url = fetch_secret_version(
         "haru256-billing-report", "SLACK_WEBHOOK_URL", "latest"
     )
@@ -147,10 +147,14 @@ def report_gcp_cost_to_slack() -> WebhookResponse:
     start_datetime_jst = end_datetime_jst - relativedelta(weeks=2)
     start_date_jst = start_datetime_jst.strftime("%Y-%m-%d")
 
-    logger.info("Calc Cost from BigQuery")
+    logger.info(
+        "Querying billing data from BigQuery: start_date_jst={}, end_date_jst={}",
+        start_date_jst,
+        end_date_jst,
+    )
     cost_df, processed_gib_bytes = calc_gcp_cost(billing_account_id, start_date_jst, end_date_jst)
 
-    logger.info("Send message to Slack")
+    logger.info("Sending billing report to Slack")
     blocks = build_message(
         billing_account_id, start_date_jst, end_date_jst, cost_df, processed_gib_bytes
     )
@@ -165,12 +169,17 @@ def report_gcp_cost_to_slack() -> WebhookResponse:
 def main(cloud_event: CloudEvent) -> None:
     """Endpoint for google cloud function.
     Args:
-        msg (str): message from Pub/Sub trigger
-        context (str): context from Pub/Sub trigger
-    Returns:
-        WebhookResponse: the response from the slack webhook
+        cloud_event (CloudEvent): Pub/Sub CloudEvent.
     """
-    logger.info("Get Event")
+    logger.info(
+        "Received CloudEvent: id={}, type={}, source={}",
+        cloud_event.get("id"),
+        cloud_event.get("type"),
+        cloud_event.get("source"),
+    )
     response = report_gcp_cost_to_slack()
     if response.status_code != 200:
-        raise RuntimeError("status codeが200ではない")
+        raise RuntimeError(
+            "Slack webhook returned non-200 status: "
+            f"status_code={response.status_code}, body={response.body!r}"
+        )
