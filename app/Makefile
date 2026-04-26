@@ -22,9 +22,22 @@ lock: ## Lock dependencies
 install: ## Setup the project
 	uv sync --all-groups
 
-.PHONY: run-local
-run-local: ## run on local
-	uv run python main.py
+.PHONY: run-server-local
+run-server-local: ## run on local
+	uv run functions-framework \
+        --target=main \
+        --signature-type=cloudevent \
+        --port=9999
+
+.PHONY: run-test-local
+run-test-local:
+	curl -X POST http://localhost:9999/ \
+  	    -H "Content-Type: application/json" \
+  	    -H "Ce-Id: local-test-1" \
+  	    -H "Ce-Specversion: 1.0" \
+  	    -H "Ce-Type: google.cloud.pubsub.topic.v1.messagePublished" \
+  	    -H "Ce-Source: //pubsub.googleapis.com/projects/local-project/topics/local-topic" \
+  	    -d '{"message":{"data":"e30=","messageId":"1"},"subscription":"local"}'
 
 .PHONY: help
 help: ## Show options
