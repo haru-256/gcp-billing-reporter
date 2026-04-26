@@ -1,8 +1,8 @@
-.PHONY: format lint all plan
+.PHONY: validate-renovate help
 
 .DEFAULT_GOAL = help
 
-validate-renovate: # lint terraform
+validate-renovate: # validate renovate config
 	mise exec -- renovate-config-validator --strict --no-global renovate.json
 
 help: # Show help for each of the Makefile recipes.
