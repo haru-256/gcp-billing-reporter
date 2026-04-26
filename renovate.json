@@ -29,6 +29,11 @@
       "automerge": false
     },
     {
+      "matchManagers": ["custom.regex"],
+      "matchDepNames": ["python"],
+      "allowedVersions": "/^\\d+\\.\\d+$/"
+    },
+    {
       "matchDepNames": ["python"],
       "groupName": "python runtime",
       "automerge": false

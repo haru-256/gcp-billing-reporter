@@ -1,4 +1,4 @@
-.PHONY: format lint all plan
+.PHONY: validate-renovate help
 
 .DEFAULT_GOAL = help
 
