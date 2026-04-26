@@ -1,0 +1,31 @@
+name: Renovate CI
+
+on:
+  pull_request:
+    paths:
+      - "renovate.json"
+      - ".github/workflows/renovate-ci.yml"
+  push:
+    branches:
+      - main
+    paths:
+      - "renovate.json"
+      - ".github/workflows/renovate-ci.yml"
+
+permissions:
+  contents: read # Readだけで十分
+
+jobs:
+  validate-renovate-config:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install mise
+        uses: jdx/mise-action@v3
+
+      - name: Validate Renovate config
+        run: |
+          mise exec -- renovate-config-validator --strict --no-global renovate.json

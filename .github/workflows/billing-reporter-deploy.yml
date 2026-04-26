@@ -38,7 +38,7 @@ jobs:
           name: "billing-reporter"
           project_id: ${{ vars.GCP_PROJECT_ID }}
           region: "us-central1"
-          runtime: "python311"
+          runtime: "python314"
           entry_point: "main"
           source_dir: "app"
           description: "Report GCP cost to the slack channel"
