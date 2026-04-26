@@ -28,6 +28,7 @@ lint = ["ruff~=0.15.12", "mypy~=1.20.2"]
 
 [tool.ruff]
 line-length = 100
+target-version = "py314"
 
 [tool.ruff.lint]
 extend-select = ["I"]
