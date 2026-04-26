@@ -13,10 +13,10 @@
       "customType": "regex",
       "managerFilePatterns": ["/^\\.github/workflows/.+\\.ya?ml$/"],
       "matchStrings": [
-        "runtime:\\s*[\"']?python(?<minor>\\d{2})[\"']?"
+        "runtime:\\s*[\"']?python(?<major>\\d)(?<minor>\\d{2})[\"']?"
       ],
       "autoReplaceStringTemplate": "runtime: \"python{{{replace '.' '' newValue}}}\"",
-      "currentValueTemplate": "3.{{{minor}}}",
+      "currentValueTemplate": "{{{major}}}.{{{minor}}}",
       "datasourceTemplate": "python-version",
       "versioningTemplate": "python",
       "depNameTemplate": "python"
